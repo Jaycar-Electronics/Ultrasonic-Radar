@@ -1,14 +1,16 @@
 
 #include <Servo.h>
 
-#define TRIG 
-#define ECHO
-#define SERVO
+#define TRIG 8
+#define ECHO 9
+#define SERVO A1
 
 Servo rotator; 
 int angle = 15; //sensible default
+bool forwardSweep = true;
 
 void setup(){
+    Serial.begin(115200);
     pinMode(TRIG, OUTPUT);
     pinMode(ECHO, INPUT);
 
@@ -29,13 +31,13 @@ void loop(){
     //we havent moved yet, but we're at some angle; 
     //take a reading and output to computer:
 
-    delay(30); //wait for servo to stop moving
-    int distance = calculateDistance();
+    delay(20); //wait for servo to stop moving
+    long distance = calculateDistance();
 
     //send the information to the computer
     Serial.print(angle);
     Serial.print(",");
-    Serial.print(distance);
+    Serial.print(distance,DEC);
     Serial.println(); //newline to finish it off
 
     /* start moving in the proper direction */    
@@ -49,19 +51,18 @@ void loop(){
     rotator.write(angle);
 }
 
-int calculateDistance(){
+long calculateDistance(){
 
-    long duration = 0;
+    unsigned long duration = 0;
     
     digitalWrite(TRIG, LOW);
-    delayMicroseconds(2);
+    delayMicroseconds(5);
 
     digitalWrite(TRIG, HIGH);
     delayMicroseconds(10);
     digitalWrite(TRIG, LOW);
 
-    duration = pulseIn(ECHO, LOW);
+    duration = pulseIn(ECHO, HIGH,100000);
 
-    return duration * 0.017;
-    
+    return duration;
 }
