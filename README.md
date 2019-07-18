@@ -1,4 +1,4 @@
-# ProjectTemplate
+# Ultrasonic Radar
 
 Watch a cool raadar slide across your computer screen like the old time war-movies! Use the simple ultrasonic sensor to measure distance in a rotating fashion across your work bench.
 
@@ -6,11 +6,11 @@ Uses Arduino to make the radar and Processing gui to display on your computer.
 
 | Input | Output | 
 | ----- | ------ | 
-| | |
+| Distance | Serial Data |
 
 <!-- TOC -->
 
-- [ProjectTemplate](#projecttemplate)
+- [Ultrasonic Radar](#ultrasonic-radar)
     - [Bill of materials](#bill-of-materials)
     - [Software & Libraries](#software--libraries)
     - [System overview](#system-overview)
@@ -92,7 +92,7 @@ On the underside, we just wire it soso that the servo control pin is `A1` and th
 
 Doing it in this order makes it so that the socket socket leads can remain together and run neatly next to each other, without tangling VCC/GND/DATA lines. 
 
-##Integration
+## Integration
 <!-- How to join it all together -->
 Attach the Servo module to the servo, and rotate to check the correct positioning of the servo module. The servo is non-continous, so you will have to check and reposition the ultrasonic sensor if you find that it can not turn in the full range of motion expected.
 
@@ -110,12 +110,15 @@ The Processing GUI will connect to the last Serial port on your computer, which 
 
 You will not be able to connect to the Arduino via Processing if you have the Arduino Serial Monitor or Serial Plotter open. Close these and try to run the Processing sketch again. 
 
+
 ## Future improvements 
 
-Got more ideas with what we can do with it? Submit an issue and get collaborating! 
+Got more ideas with what we can add to it? Submit a github issue and get collaborating! 
 
 ## Further reading
 Please note, Jaycar does not support nor endorse any of the below links, nor offers any guarentee of their quality or suitability for your needs.
 
-* link 1
-* link 2
+* https://www.sciencebuddies.org/science-fair-projects/references/introduction-to-servo-motors
+* https://www.servocity.com/how-does-a-servo-work
+* https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/
+* https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
