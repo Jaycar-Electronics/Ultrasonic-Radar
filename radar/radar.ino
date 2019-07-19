@@ -10,12 +10,13 @@ int angle = 15; //sensible default
 bool forwardSweep = true;
 
 void setup(){
-    Serial.begin(115200);
+    Serial.begin(9600);
     pinMode(TRIG, OUTPUT);
     pinMode(ECHO, INPUT);
 
     rotator.attach(SERVO);
     rotator.write(angle); //we start at the angle
+    Serial.print("\n");
 }
 void loop(){
 
@@ -38,7 +39,9 @@ void loop(){
     Serial.print(angle);
     Serial.print(",");
     Serial.print(distance,DEC);
-    Serial.println(); //newline to finish it off
+    Serial.print("\n"); // newline to finish it off
+    // println() will produce "\r\n" which you have to 
+    // account for in processing
 
     /* start moving in the proper direction */    
     if (forwardSweep){
@@ -64,5 +67,8 @@ long calculateDistance(){
 
     duration = pulseIn(ECHO, HIGH,100000);
 
-    return duration;
+    //return the raw duration, divided by 2.
+    // the computer can convert to proper numbers.
+    // by duration/29.1 seconds
+    return duration >>1;
 }
