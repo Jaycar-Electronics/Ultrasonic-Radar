@@ -16,6 +16,9 @@ Serial myPort; // serial object
 // Serial data buffer
 String data="";
 
+float[] drawableAngles; 
+int[] drawableDistances;
+
 void setup() {
   
  size (400,300); //set window size 
@@ -81,7 +84,7 @@ void serialEvent (Serial myPort) {
 	distance = int( data.substring(splitIndex + 1, data.length()) );
 
 	//factor in the speed of light in distance:
-	distance = distance / 29.1; 
+	distance = int(distance / 29.1); 
 	} catch ( RuntimeException e) { 
 		print("Failed to convert String into INT, skipping..");
 		e.printStackTrace();
